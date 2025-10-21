@@ -75,7 +75,7 @@ export default function Home() {
                 alt="Hero"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
                 height="550"
-                src={PlaceHolderImages.find(p => p.id === 'hero-connect-alt')?.imageUrl || ''}
+                src={PlaceHolderImages.find(p => p.id === 'hero-connect')?.imageUrl || ''}
                 data-ai-hint="abstract network connection"
                 width="550"
               />
