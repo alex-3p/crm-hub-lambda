@@ -40,7 +40,7 @@ export default function Home() {
       <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
         <Link className="flex items-center justify-center" href="#">
           <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
-          <span className="ml-2 font-semibold text-lg">Lambda CRM Gateway Hub</span>
+          <span className="ml-3 font-semibold text-lg">Lambda CRM Gateway Hub</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Button asChild variant="default">
@@ -96,7 +96,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {crms.map((crm) => (
                 <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full max-w-sm mx-auto">
                   <CardHeader className="flex-grow-0">
