@@ -1,9 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Network } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, BrainCircuit } from 'lucide-react';
 
 const crms = [
   {
@@ -72,7 +70,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                 <Network className="h-48 w-48 text-primary/50" />
+                 <BrainCircuit className="h-48 w-48 text-primary/50" />
               </div>
             </div>
           </div>
