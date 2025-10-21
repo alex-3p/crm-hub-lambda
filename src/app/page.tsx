@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Network } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Spline } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const crms = [
@@ -50,7 +50,7 @@ export default function Home() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-20 lg:py-24 bg-background">
+        <section className="w-full py-12 md:py-16 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -72,7 +72,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <Network className="h-64 w-64 text-primary/50" />
+                <Spline className="h-64 w-64 text-primary/50" />
               </div>
             </div>
           </div>
@@ -87,9 +87,9 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="mx-auto grid grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 justify-items-center">
               {crms.map((crm) => (
-                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl w-full max-w-sm">
                   <CardHeader className="flex flex-row items-center gap-4 pb-2">
                      <div className="p-2 bg-primary/10 rounded-md">
                         <crm.icon className="h-6 w-6 text-primary" />
