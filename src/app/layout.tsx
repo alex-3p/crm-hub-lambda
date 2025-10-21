@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'CRM Gateway Hub',
+  title: 'Lambda CRM Gateway Hub',
   description: 'Integra y gestiona tus CRMs con facilidad.',
 };
 

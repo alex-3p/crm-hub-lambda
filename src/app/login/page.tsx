@@ -9,7 +9,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center">
           <Link className="flex items-center justify-center mb-6" href="/">
             <Cuboid className="h-8 w-8 text-primary" />
-            <span className="ml-3 font-semibold text-2xl">CRM Gateway Hub</span>
+            <span className="ml-3 font-semibold text-2xl">Lambda CRM Gateway Hub</span>
           </Link>
           <h1 className="text-2xl font-bold text-center">Bienvenido de Nuevo</h1>
           <p className="text-muted-foreground text-center">
