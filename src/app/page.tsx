@@ -39,7 +39,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
         <Link className="flex items-center justify-center" href="#">
-          <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={24} height={24} alt="Lambda Analytics Logo" />
+          <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
           <span className="ml-2 font-semibold text-lg">Lambda CRM Gateway Hub</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">

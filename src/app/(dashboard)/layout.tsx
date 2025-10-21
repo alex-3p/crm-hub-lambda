@@ -39,7 +39,7 @@ export default async function DashboardLayout({
             <SidebarMenuItem>
               <SidebarMenuButton href="/dashboard" asChild>
                 <Link href="/dashboard" className='flex items-center gap-2'>
-                  <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={24} height={24} alt="Lambda Analytics Logo" />
+                  <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
                   <span className="font-semibold text-lg text-sidebar-foreground">
                     CRM Gateway
                   </span>
