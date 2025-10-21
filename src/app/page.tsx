@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const crms = [
   {
@@ -32,6 +33,8 @@ const crms = [
 ];
 
 export default function Home() {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-connect');
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
@@ -50,15 +53,17 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-white">
-          <Image
-            src="https://images.unsplash.com/photo-1554224155-1695443517f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMG5ldHdvcmclMjBjb25uZWN0aW9ufGVufDB8fHx8MTc2MTEyODE4OHww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Fondo de red abstracta"
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
-            data-ai-hint="abstract network"
-          />
+        <section className="relative w-full h-[80vh] flex items-center justify-center text-center text-white">
+        {heroImage && (
+            <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                className="z-0 object-cover"
+                data-ai-hint={heroImage.imageHint}
+                priority
+            />
+        )}
           <div className="absolute inset-0 bg-black/60 z-10" />
           <div className="relative z-20 container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4">
@@ -68,7 +73,7 @@ export default function Home() {
               <p className="max-w-[700px] text-lg text-white/90 md:text-xl">
                 Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 mt-6">
                 <Button asChild size="lg">
                   <Link href="/login">
                     Comenzar Ahora
