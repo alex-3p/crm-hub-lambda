@@ -85,12 +85,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="integrations"
-          className="w-full py-12 md:py-20 lg:py-24 bg-secondary flex justify-center"
-        >
-          <div className="w-full max-w-7xl px-4 md:px-6 text-center">
-            <div className="flex flex-col items-center justify-center space-y-4 mb-12">
+        <section id="integrations" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-3">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Conecte sus Herramientas Favoritas</h2>
@@ -99,9 +96,9 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 justify-items-center">
               {crms.map((crm) => (
-                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full max-w-sm sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]">
+                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full max-w-sm">
                   <CardHeader className="flex-grow-0">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-primary/10 rounded-full">
