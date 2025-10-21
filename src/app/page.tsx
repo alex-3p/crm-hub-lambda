@@ -85,9 +85,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="integrations" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <section
+          id="integrations"
+          className="w-full py-12 md:py-20 lg:py-24 bg-secondary flex justify-center"
+        >
+          <div className="w-full max-w-7xl px-4 md:px-6 text-center">
+            <div className="flex flex-col items-center justify-center space-y-4 mb-12">
               <div className="space-y-3">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Conecte sus Herramientas Favoritas</h2>
