@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const crms = [
@@ -10,25 +10,25 @@ const crms = [
     id: 'domus',
     name: 'Domus',
     description: 'El CRM inmobiliario líder para optimizar la gestión de propiedades y procesos de venta.',
-    image: PlaceHolderImages.find(p => p.id === 'domus-logo'),
+    icon: Globe,
   },
   {
     id: 'siesa',
     name: 'Siesa',
     description: 'Soluciones integrales de ERP y CRM para empresas en crecimiento, unificando todas sus operaciones.',
-    image: PlaceHolderImages.find(p => p.id === 'siesa-logo'),
+    icon: Briefcase,
   },
   {
     id: 'inventario-agil',
     name: 'Inventario Agil',
     description: 'Optimice su inventario y conéctelo sin problemas con sus canales de venta.',
-    image: PlaceHolderImages.find(p => p.id === 'inventario-agil-logo'),
+    icon: Boxes,
   },
   {
     id: 'wasi',
     name: 'Wasi',
     description: 'Una potente plataforma para que los profesionales inmobiliarios gestionen clientes y propiedades.',
-    image: PlaceHolderImages.find(p => p.id === 'wasi-logo'),
+    icon: Building2,
   },
 ];
 
@@ -75,7 +75,7 @@ export default function Home() {
                 alt="Hero"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
                 height="550"
-                src={PlaceHolderImages.find(p => p.id === 'hero-connect')?.imageUrl || ''}
+                src={PlaceHolderImages.find(p => p.id === 'hero-connect-alt')?.imageUrl || ''}
                 data-ai-hint="abstract network connection"
                 width="550"
               />
@@ -96,7 +96,9 @@ export default function Home() {
               {crms.map((crm) => (
                 <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                   <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                     {crm.image && <Image src={crm.image.imageUrl} alt={`${crm.name} logo`} width={40} height={40} className="rounded-md" data-ai-hint={crm.image.imageHint} />}
+                     <div className="p-2 bg-primary/10 rounded-md">
+                        <crm.icon className="h-6 w-6 text-primary" />
+                     </div>
                     <CardTitle>{crm.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
