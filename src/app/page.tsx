@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Spline, BrainCircuit, Network } from 'lucide-react';
 import Image from 'next/image';
 
 const crms = [
@@ -71,12 +71,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                 <Image src="https://wallpapers.com/images/hd/network-topology-graphic-8zduz9x6rgmp2mss-2.png" alt="Network Topology" width={400} height={400} className="rounded-xl" data-ai-hint="network technology"/>
+                 <Image src="https://images.unsplash.com/photo-1554224155-1695443517f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMG5ldHdvcmclMjBjb25uZWN0aW9ufGVufDB8fHx8MTc2MTEyODE4OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Abstract network connections" width={400} height={400} className="rounded-xl" data-ai-hint="abstract network"/>
               </div>
             </div>
           </div>
         </section>
-        <section id="integrations" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+        <section id="integrations" className="w-full py-12 md:py-16 lg:py-20 bg-secondary">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
