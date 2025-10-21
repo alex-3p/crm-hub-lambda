@@ -11,16 +11,16 @@ export default function LoginPage() {
             <Cuboid className="h-8 w-8 text-primary" />
             <span className="ml-3 font-semibold text-2xl">CRM Gateway Hub</span>
           </Link>
-          <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
+          <h1 className="text-2xl font-bold text-center">Bienvenido de Nuevo</h1>
           <p className="text-muted-foreground text-center">
-            Enter your credentials to access your dashboard.
+            Introduce tus credenciales para acceder a tu panel.
           </p>
         </div>
         <LoginForm />
         <p className="text-center text-sm text-muted-foreground">
-          Don't have an account?{' '}
+          ¿No tienes una cuenta?{' '}
           <Link href="#" className="underline underline-offset-4 hover:text-primary">
-            Contact support
+            Contactar a soporte
           </Link>
         </p>
       </div>

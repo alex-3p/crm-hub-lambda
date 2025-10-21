@@ -20,7 +20,7 @@ export function LoginForm() {
     if (state.errors?._form) {
       toast({
         variant: "destructive",
-        title: "Login Failed",
+        title: "Fallo de Inicio de Sesión",
         description: state.errors._form.join(', '),
       })
     }
@@ -33,11 +33,11 @@ export function LoginForm() {
         <CardHeader />
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="slug">Organization Slug</Label>
+            <Label htmlFor="slug">Slug de la Organización</Label>
             <Input
               id="slug"
               name="slug"
-              placeholder="e.g. pailaquinta"
+              placeholder="ej. pailaquinta"
               required
               defaultValue="pailaquinta"
               aria-describedby="slug-error"
@@ -52,12 +52,12 @@ export function LoginForm() {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Correo Electrónico</Label>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="user@company.com"
+              placeholder="usuario@empresa.com"
               required
               aria-describedby="email-error"
             />
@@ -71,7 +71,7 @@ export function LoginForm() {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <Input id="password" name="password" type="password" required 
              aria-describedby="password-error"
             />
@@ -98,7 +98,7 @@ function LoginButton() {
   
     return (
       <Button type="submit" className="w-full" aria-disabled={pending} disabled={pending}>
-        {pending ? 'Signing In...' : 'Sign In'}
+        {pending ? 'Iniciando Sesión...' : 'Iniciar Sesión'}
       </Button>
     );
 }

@@ -9,25 +9,25 @@ const crms = [
   {
     id: 'domus',
     name: 'Domus',
-    description: 'The leading real estate CRM for optimizing property management and sales processes.',
+    description: 'El CRM inmobiliario líder para optimizar la gestión de propiedades y procesos de venta.',
     image: PlaceHolderImages.find(p => p.id === 'domus-logo'),
   },
   {
     id: 'siesa',
     name: 'Siesa',
-    description: 'Comprehensive ERP and CRM solutions for growing businesses, unifying all your operations.',
+    description: 'Soluciones integrales de ERP y CRM para empresas en crecimiento, unificando todas sus operaciones.',
     image: PlaceHolderImages.find(p => p.id === 'siesa-logo'),
   },
   {
     id: 'inventario-agil',
     name: 'Inventario Agil',
-    description: 'Streamline your inventory and connect it seamlessly with your sales channels.',
+    description: 'Optimice su inventario y conéctelo sin problemas con sus canales de venta.',
     image: PlaceHolderImages.find(p => p.id === 'inventario-agil-logo'),
   },
   {
     id: 'wasi',
     name: 'Wasi',
-    description: 'A powerful platform for real estate professionals to manage clients and properties.',
+    description: 'Una potente plataforma para que los profesionales inmobiliarios gestionen clientes y propiedades.',
     image: PlaceHolderImages.find(p => p.id === 'wasi-logo'),
   },
 ];
@@ -43,7 +43,7 @@ export default function Home() {
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Button asChild variant="default">
             <Link href="/login">
-              Login
+              Iniciar Sesión
               <LogInIcon className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -56,16 +56,16 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                    Unified CRM Management Platform
+                    Plataforma Unificada de Gestión de CRM
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Connect, manage, and synchronize your data across multiple CRMs seamlessly. Our Gateway Hub provides the central nervous system for your business operations.
+                    Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button asChild size="lg">
                     <Link href="/login">
-                      Get Started
+                      Comenzar
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -86,9 +86,9 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Supported Integrations</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Integraciones Soportadas</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  We connect with the industry's leading CRMs. Click to configure an integration and start syncing.
+                  Nos conectamos con los CRMs líderes de la industria. Haga clic para configurar una integración y comenzar a sincronizar.
                 </p>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function Home() {
                   <CardFooter>
                      <Button asChild className="w-full" variant="outline">
                       <Link href="/login">
-                        Add Integration
+                        Añadir Integración
                       </Link>
                     </Button>
                   </CardFooter>
@@ -116,13 +116,13 @@ export default function Home() {
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">&copy; 2024 CRM Gateway Hub. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">&copy; 2024 CRM Gateway Hub. Todos los derechos reservados.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
+            Términos de Servicio
           </Link>
           <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy
+            Privacidad
           </Link>
         </nav>
       </footer>

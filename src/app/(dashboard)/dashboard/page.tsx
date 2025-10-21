@@ -18,7 +18,7 @@ export default async function DashboardPage() {
       <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl">
         <Image 
           src={PlaceHolderImages.find(p => p.id === 'dashboard-welcome')?.imageUrl || ''}
-          alt="Welcome to the dashboard"
+          alt="Bienvenido al panel"
           fill
           className="object-cover"
           data-ai-hint="office workspace"
@@ -27,10 +27,10 @@ export default async function DashboardPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 p-6 md:p-8">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-headline">
-              Welcome back, {session?.user?.full_name.split(' ')[0] || 'Admin'}!
+              ¡Bienvenido de nuevo, {session?.user?.full_name.split(' ')[0] || 'Admin'}!
             </h1>
             <p className="text-lg text-white/90">
-                Here's a quick overview of your CRM integrations.
+                Aquí tienes un resumen rápido de tus integraciones de CRM.
             </p>
         </div>
       </div>
@@ -39,56 +39,56 @@ export default async function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Managed Users
+              Usuarios Gestionados
             </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
             <p className="text-xs text-muted-foreground">
-              +2 since last month
+              +2 desde el último mes
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Organizations
+              Organizaciones
             </CardTitle>
             <Building className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
             <p className="text-xs text-muted-foreground">
-              +1 since last quarter
+              +1 desde el último trimestre
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-                Active Integrations
+                Integraciones Activas
             </CardTitle>
             <Settings className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">4</div>
             <p className="text-xs text-muted-foreground">
-              All systems operational
+              Todos los sistemas operativos
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              API Status
+              Estado de la API
             </CardTitle>
             <CheckCircle className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Healthy</div>
+            <div className="text-2xl font-bold">Saludable</div>
             <p className="text-xs text-muted-foreground">
-              24/7 Monitoring
+              Monitoreo 24/7
             </p>
           </CardContent>
         </Card>

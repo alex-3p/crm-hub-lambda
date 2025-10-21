@@ -29,21 +29,21 @@ const organizations = [
     id: 1,
     name: "Pailaquinta",
     slug: "pailaquinta",
-    status: "Active",
+    status: "Activo",
     users: 5,
   },
   {
     id: 2,
     name: "Lambda Analytics",
     slug: "lambda",
-    status: "Active",
+    status: "Activo",
     users: 25,
   },
   {
     id: 3,
     name: "Future Corp",
     slug: "future-corp",
-    status: "Inactive",
+    status: "Inactivo",
     users: 0,
   },
 ];
@@ -54,26 +54,26 @@ export default function OrganizationsPage() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle>Organization Management</CardTitle>
+          <CardTitle>Gestión de Organizaciones</CardTitle>
           <CardDescription>
-            Manage all organizations connected to the Gateway Hub.
+            Gestione todas las organizaciones conectadas al Gateway Hub.
           </CardDescription>
         </div>
         <Button size="sm" className="gap-1">
           <PlusCircle className="h-4 w-4" />
-          Add Organization
+          Añadir Organización
         </Button>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Organization Name</TableHead>
+              <TableHead>Nombre de la Organización</TableHead>
               <TableHead>Slug</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Users</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead>Usuarios</TableHead>
               <TableHead>
-                <span className="sr-only">Actions</span>
+                <span className="sr-only">Acciones</span>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -83,8 +83,8 @@ export default function OrganizationsPage() {
                 <TableCell className="font-medium">{org.name}</TableCell>
                 <TableCell className="font-mono text-sm">{org.slug}</TableCell>
                 <TableCell>
-                  <Badge variant={org.status === 'Active' ? 'outline' : 'destructive'} 
-                    className={org.status === 'Active' ? 'text-green-600 border-green-600' : ''}>
+                  <Badge variant={org.status === 'Activo' ? 'outline' : 'destructive'} 
+                    className={org.status === 'Activo' ? 'text-green-600 border-green-600' : ''}>
                     {org.status}
                   </Badge>
                 </TableCell>
@@ -98,9 +98,9 @@ export default function OrganizationsPage() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>View Users</DropdownMenuItem>
-                       <DropdownMenuItem className="text-destructive focus:bg-destructive/10 focus:text-destructive">Deactivate</DropdownMenuItem>
+                      <DropdownMenuItem>Editar</DropdownMenuItem>
+                      <DropdownMenuItem>Ver Usuarios</DropdownMenuItem>
+                       <DropdownMenuItem className="text-destructive focus:bg-destructive/10 focus:text-destructive">Desactivar</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>

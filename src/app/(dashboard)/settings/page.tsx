@@ -39,28 +39,28 @@ function CrmSettingsForm({ crmName }: { crmName: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{crmName} Credentials</CardTitle>
+        <CardTitle>Credenciales de {crmName}</CardTitle>
         <CardDescription>
-          Enter the API credentials for {crmName} to activate the integration.
-          Make sure the credentials have the required permissions.
+          Introduzca las credenciales de la API para {crmName} para activar la integración.
+          Asegúrese de que las credenciales tienen los permisos necesarios.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor={`${crmName}-api-key`}>API Key</Label>
-          <Input id={`${crmName}-api-key`} placeholder="Enter your API Key" type="password" />
+          <Label htmlFor={`${crmName}-api-key`}>Clave de API</Label>
+          <Input id={`${crmName}-api-key`} placeholder="Introduzca su Clave de API" type="password" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor={`${crmName}-api-secret`}>API Secret</Label>
-          <Input id={`${crmName}-api-secret`} placeholder="Enter your API Secret" type="password" />
+          <Label htmlFor={`${crmName}-api-secret`}>Secreto de API</Label>
+          <Input id={`${crmName}-api-secret`} placeholder="Introduzca su Secreto de API" type="password" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor={`${crmName}-url`}>API URL (if applicable)</Label>
+          <Label htmlFor={`${crmName}-url`}>URL de API (si aplica)</Label>
           <Input id={`${crmName}-url`} placeholder="https://api.example.com" />
         </div>
       </CardContent>
       <CardFooter>
-        <Button>Save Credentials</Button>
+        <Button>Guardar Credenciales</Button>
       </CardFooter>
     </Card>
   );
@@ -70,9 +70,9 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">CRM Integration Settings</h1>
+        <h1 className="text-2xl font-bold">Ajustes de Integración de CRM</h1>
         <p className="text-muted-foreground">
-          Manage API credentials for your connected CRMs.
+          Gestione las credenciales de API para sus CRMs conectados.
         </p>
       </div>
       <Tabs defaultValue="domus" className="w-full">

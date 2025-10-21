@@ -53,7 +53,7 @@ export default async function DashboardLayout({
               <SidebarMenuButton href="/dashboard" asChild>
                 <Link href="/dashboard">
                   <LayoutDashboard />
-                  Dashboard
+                  Panel
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -61,7 +61,7 @@ export default async function DashboardLayout({
               <SidebarMenuButton href="/users" asChild>
                 <Link href="/users">
                   <Users />
-                  User Management
+                  Gestión de Usuarios
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -69,7 +69,7 @@ export default async function DashboardLayout({
               <SidebarMenuButton href="/organizations" asChild>
                 <Link href="/organizations">
                   <Building />
-                  Organizations
+                  Organizaciones
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -77,7 +77,7 @@ export default async function DashboardLayout({
               <SidebarMenuButton href="/settings" asChild>
                 <Link href="/settings">
                   <Settings />
-                  CRM Settings
+                  Ajustes de CRM
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -87,7 +87,7 @@ export default async function DashboardLayout({
       </Sidebar>
       <SidebarInset>
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
-          <h1 className="text-xl font-semibold">Dashboard</h1>
+          <h1 className="text-xl font-semibold">Panel</h1>
           <div className="ml-auto flex items-center gap-2">
             {session?.user && <UserNav user={session.user} />}
           </div>

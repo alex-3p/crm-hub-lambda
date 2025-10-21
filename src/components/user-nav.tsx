@@ -47,16 +47,16 @@ import {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              Profile
+              Perfil
             </DropdownMenuItem>
             <DropdownMenuItem>
-              Settings
+              Ajustes
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
               <form action={logout} className="w-full">
-                  <button type="submit" className="w-full text-left">Log out</button>
+                  <button type="submit" className="w-full text-left">Cerrar sesión</button>
               </form>
           </DropdownMenuItem>
         </DropdownMenuContent>
