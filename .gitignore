@@ -43,3 +43,13 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+#server.js
+/server.log
+/server.pid
+/server-*.log
+/server-*.pid
+server.js
+/server-*.js
+web.config
+/web.config
