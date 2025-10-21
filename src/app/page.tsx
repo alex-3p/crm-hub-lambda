@@ -85,8 +85,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="integrations" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
-          <div className="container px-4 md:px-6">
+        <section
+          id="integrations"
+          className="w-full py-12 md:py-20 lg:py-24 bg-secondary flex justify-center"
+        >
+          <div className="w-full max-w-7xl px-4 md:px-6 text-center">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-3">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
@@ -98,7 +101,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {crms.map((crm) => (
-                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full">
+                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full text-left">
                   <CardHeader className="flex-grow-0">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-primary/10 rounded-full">
