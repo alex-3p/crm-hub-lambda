@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Spline } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const crms = [
@@ -55,7 +55,7 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                     Plataforma Unificada de Gestión de CRM
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-lg">
@@ -72,7 +72,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <Spline className="h-64 w-64 text-primary/50" />
+                 <Image
+                  src={PlaceHolderImages.find(p => p.id === 'hero-connect-alt')?.imageUrl || ''}
+                  alt="Abstract network connections"
+                  width={400}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  data-ai-hint="technology network"
+                />
               </div>
             </div>
           </div>
