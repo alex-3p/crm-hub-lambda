@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
         hostname: 'coltecno.com',
         port: '',
         pathname: '/**',
-      }
+      },
     ],
   },
   allowedDevOrigins: [

@@ -49,7 +49,7 @@ export default function Home() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-8 md:py-12 bg-background">
+        <section className="w-full py-6 md:py-10 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -71,7 +71,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                 <Image src="https://images.unsplash.com/photo-1554224155-1695443517f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMG5ldHdvcmclMjBjb25uZWN0aW9ufGVufDB8fHx8MTc2MTEyODE4OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Abstract network connections" width={400} height={400} className="rounded-xl" data-ai-hint="abstract network"/>
+                 <Image src="https://coltecno.com/wp-content/uploads/2024/08/definicion-red-de-computo.jpg" alt="Abstract network connections" width={400} height={400} className="rounded-xl" data-ai-hint="technology network"/>
               </div>
             </div>
           </div>
