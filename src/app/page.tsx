@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
+import { ArrowRight, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -39,7 +39,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
         <Link className="flex items-center justify-center" href="#">
-          <Cuboid className="h-6 w-6 text-primary" />
+          <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={24} height={24} alt="Lambda Analytics Logo" />
           <span className="ml-2 font-semibold text-lg">Lambda CRM Gateway Hub</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">

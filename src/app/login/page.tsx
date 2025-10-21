@@ -1,6 +1,6 @@
 import { LoginForm } from '@/components/login-form';
 import Link from 'next/link';
-import { Cuboid } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LoginPage() {
   return (
@@ -8,7 +8,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 space-y-8">
         <div className="flex flex-col items-center">
           <Link className="flex items-center justify-center mb-6" href="/">
-            <Cuboid className="h-8 w-8 text-primary" />
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={32} height={32} alt="Lambda Analytics Logo" />
             <span className="ml-3 font-semibold text-2xl">Lambda CRM Gateway Hub</span>
           </Link>
           <h1 className="text-2xl font-bold text-center">Bienvenido de Nuevo</h1>

@@ -22,6 +22,7 @@ import {
 
 import { UserNav } from '@/components/user-nav';
 import { getSession } from '@/lib/session';
+import Image from 'next/image';
 
 export default async function DashboardLayout({
   children,
@@ -38,7 +39,7 @@ export default async function DashboardLayout({
             <SidebarMenuItem>
               <SidebarMenuButton href="/dashboard" asChild>
                 <Link href="/dashboard" className='flex items-center gap-2'>
-                  <Cuboid className="text-primary" />
+                  <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={24} height={24} alt="Lambda Analytics Logo" />
                   <span className="font-semibold text-lg text-sidebar-foreground">
                     CRM Gateway
                   </span>
