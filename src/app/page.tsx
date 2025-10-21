@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Spline, BrainCircuit, Network } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
 import Image from 'next/image';
 
 const crms = [
@@ -33,8 +33,8 @@ const crms = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card">
+    <div className="flex flex-col min-h-screen bg-background">
+      <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
         <Link className="flex items-center justify-center" href="#">
           <Cuboid className="h-6 w-6 text-primary" />
           <span className="ml-2 font-semibold text-lg">Lambda CRM Gateway Hub</span>
@@ -48,58 +48,65 @@ export default function Home() {
           </Button>
         </nav>
       </header>
+
       <main className="flex-1">
-        <section className="w-full py-6 md:py-10 bg-background">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                    Plataforma Unificada de Gestión de CRM
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-lg">
-                    Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales, permitiendo una visión 360 grados de sus clientes y optimizando los flujos de trabajo entre distintas plataformas.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button asChild size="lg">
-                    <Link href="/login">
-                      Comenzar
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                 <Image src="https://coltecno.com/wp-content/uploads/2024/08/definicion-red-de-computo.jpg" alt="Abstract network connections" width={400} height={400} className="rounded-xl" data-ai-hint="technology network"/>
+        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-white">
+          <Image
+            src="https://images.unsplash.com/photo-1554224155-1695443517f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMG5ldHdvcmclMjBjb25uZWN0aW9ufGVufDB8fHx8MTc2MTEyODE4OHww&ixlib=rb-4.1.0&q=80&w=1080"
+            alt="Fondo de red abstracta"
+            layout="fill"
+            objectFit="cover"
+            className="z-0"
+            data-ai-hint="abstract network"
+          />
+          <div className="absolute inset-0 bg-black/60 z-10" />
+          <div className="relative z-20 container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4">
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
+                Plataforma Unificada de Gestión de CRM
+              </h1>
+              <p className="max-w-[700px] text-lg text-white/90 md:text-xl">
+                Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales.
+              </p>
+              <div className="flex gap-4">
+                <Button asChild size="lg">
+                  <Link href="/login">
+                    Comenzar Ahora
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
         </section>
-        <section id="integrations" className="w-full py-12 md:py-16 lg:py-20 bg-secondary">
+
+        <section id="integrations" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Integraciones Soportadas</h2>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+              <div className="space-y-3">
+                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Conecte sus Herramientas Favoritas</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Nos conectamos con los CRMs líderes de la industria. Haga clic para configurar una integración y comenzar a sincronizar.
+                  Nos conectamos con los CRMs líderes de la industria para centralizar su información y optimizar sus flujos de trabajo.
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 justify-items-center">
+            <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {crms.map((crm) => (
-                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl w-full max-w-sm">
-                  <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                     <div className="p-2 bg-primary/10 rounded-md">
+                <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col">
+                  <CardHeader className="flex-grow-0">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-primary/10 rounded-full">
                         <crm.icon className="h-6 w-6 text-primary" />
-                     </div>
-                    <CardTitle>{crm.name}</CardTitle>
+                      </div>
+                      <CardTitle>{crm.name}</CardTitle>
+                    </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-grow">
                     <CardDescription>{crm.description}</CardDescription>
                   </CardContent>
                   <CardFooter>
-                     <Button asChild className="w-full" variant="outline">
+                    <Button asChild className="w-full" variant="outline">
                       <Link href="/login">
                         Añadir Integración
                       </Link>
@@ -111,6 +118,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-muted-foreground">&copy; 2024 CRM Gateway Hub - Lambda. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
