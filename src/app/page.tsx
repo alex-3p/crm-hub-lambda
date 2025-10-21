@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
+import Image from 'next/image';
 
 const crms = [
   {
@@ -70,7 +71,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                 <BrainCircuit className="h-48 w-48 text-primary/50" />
+                 <Image src="https://wallpapers.com/images/hd/network-topology-graphic-8zduz9x6rgmp2mss-2.png" alt="Network Topology" width={400} height={400} className="rounded-xl" data-ai-hint="network technology"/>
               </div>
             </div>
           </div>
