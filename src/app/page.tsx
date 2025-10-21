@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
+import { ArrowRight, Cuboid, LogInIcon, Globe, Briefcase, Boxes, Building2, Network } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const crms = [
@@ -50,7 +50,7 @@ export default function Home() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-16 bg-background">
+        <section className="w-full py-8 md:py-12 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -59,7 +59,7 @@ export default function Home() {
                     Plataforma Unificada de Gestión de CRM
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-lg">
-                    Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales.
+                    Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales, permitiendo una visión 360 grados de sus clientes y optimizando los flujos de trabajo entre distintas plataformas.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -72,14 +72,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                 <Image
-                  src={PlaceHolderImages.find(p => p.id === 'hero-connect-alt')?.imageUrl || ''}
-                  alt="Abstract network connections"
-                  width={400}
-                  height={400}
-                  className="rounded-xl object-cover"
-                  data-ai-hint="technology network"
-                />
+                 <Network className="h-48 w-48 text-primary/50" />
               </div>
             </div>
           </div>
