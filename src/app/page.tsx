@@ -96,7 +96,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 justify-center">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {crms.map((crm) => (
                 <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full max-w-sm mx-auto">
                   <CardHeader className="flex-grow-0">
