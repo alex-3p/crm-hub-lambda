@@ -19,8 +19,8 @@ const crms = [
     icon: Briefcase,
   },
   {
-    id: 'inventario-agil',
-    name: 'Inventario Agil',
+    id: 'mobilia-acrecer',
+    name: 'Mobilia acrecer',
     description: 'Optimice su inventario y conéctelo sin problemas con sus canales de venta.',
     icon: Boxes,
   },
@@ -46,6 +46,12 @@ const crms = [
     id: 'epm-facturas',
     name: 'EPM Facturas',
     description: 'Integre y automatice la gestión de sus facturas de EPM de forma centralizada.',
+    icon: Receipt,
+  },
+  {
+    id: 'siigo-facturacion',
+    name: 'Siigo facturación',
+    description: 'Conecte su facturación de Siigo para una gestión contable centralizada.',
     icon: Receipt,
   },
 ];
