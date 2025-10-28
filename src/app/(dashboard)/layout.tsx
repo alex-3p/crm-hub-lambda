@@ -37,7 +37,7 @@ export default async function DashboardLayout({
         <SidebarHeader className="border-b border-sidebar-border">
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard" asChild>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard" className='flex items-center gap-2'>
                   <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
                   <span className="font-semibold text-lg text-sidebar-foreground ml-3">
@@ -51,7 +51,7 @@ export default async function DashboardLayout({
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard" asChild>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard">
                   <LayoutDashboard />
                   Panel
@@ -59,7 +59,7 @@ export default async function DashboardLayout({
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/users" asChild>
+              <SidebarMenuButton asChild>
                 <Link href="/users">
                   <Users />
                   Gestión de Usuarios
@@ -67,7 +67,7 @@ export default async function DashboardLayout({
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/organizations" asChild>
+              <SidebarMenuButton asChild>
                 <Link href="/organizations">
                   <Building />
                   Organizaciones
@@ -75,7 +75,7 @@ export default async function DashboardLayout({
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/settings" asChild>
+              <SidebarMenuButton asChild>
                 <Link href="/settings">
                   <Settings />
                   Ajustes de CRM
