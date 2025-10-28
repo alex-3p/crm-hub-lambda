@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, LogInIcon, Globe, Briefcase, Boxes, Building2 } from 'lucide-react';
+import { ArrowRight, LogInIcon, Globe, Briefcase, Boxes, Building2, Calendar, Receipt } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -29,6 +29,24 @@ const crms = [
     name: 'Wasi',
     description: 'Una potente plataforma para que los profesionales inmobiliarios gestionen clientes y propiedades.',
     icon: Building2,
+  },
+  {
+    id: 'google-calendar',
+    name: 'Google Calendar',
+    description: 'Sincronice sus eventos y citas directamente con su calendario de Google.',
+    icon: Calendar,
+  },
+  {
+    id: 'outlook-calendar',
+    name: 'Outlook Calendar',
+    description: 'Conecte y gestione sus eventos del calendario de Outlook sin salir de la plataforma.',
+    icon: Calendar,
+  },
+  {
+    id: 'epm-facturas',
+    name: 'EPM Facturas',
+    description: 'Integre y automatice la gestión de sus facturas de EPM de forma centralizada.',
+    icon: Receipt,
   },
 ];
 
@@ -68,10 +86,10 @@ export default function Home() {
           <div className="relative z-20 container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                Plataforma Unificada de Gestión de CRM
+                Lambda Integration Gateway Hub
               </h1>
               <p className="max-w-[700px] text-lg text-white/90 md:text-xl">
-                Conecte, gestione y sincronice sus datos a través de múltiples CRMs sin problemas. Nuestro Gateway Hub proporciona el sistema nervioso central para sus operaciones comerciales.
+                Una plataforma unificada para gestionar no solo tus CRMs, sino también integraciones como facturas EPM, Google Calendar, Outlook Calendar y muchas más. Centraliza y sincroniza todos tus datos comerciales en un solo lugar.
               </p>
               <div className="flex gap-4 mt-6">
                 <Button asChild size="lg">
@@ -95,11 +113,11 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Conecte sus Herramientas Favoritas</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Nos conectamos con los CRMs líderes de la industria para centralizar su información y optimizar sus flujos de trabajo.
+                  Nos conectamos con los CRMs líderes y otras herramientas clave para centralizar su información y optimizar sus flujos de trabajo.
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 justify-items-center">
               {crms.map((crm) => (
                 <Card key={crm.id} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-primary/20 hover:shadow-lg flex flex-col w-full text-left">
                   <CardHeader className="flex-grow-0">
