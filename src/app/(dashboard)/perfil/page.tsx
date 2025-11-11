@@ -24,7 +24,9 @@ function getUserIdFromCookie(): string | null {
   if (!cookie) return null;
   const value = cookie.split('=')[1];
   try {
-    const sessionData = JSON.parse(decodeURIComponent(value));
+    // Decode Base64
+    const decodedValue = atob(value);
+    const sessionData = JSON.parse(decodedValue);
     return sessionData.user?.id || null;
   } catch (error) {
     console.error("Failed to parse user data from cookie:", error);
