@@ -1,3 +1,4 @@
+'use server';
 import 'server-only';
 import { cookies } from 'next/headers';
 import type { SessionPayload, User } from './definitions';
