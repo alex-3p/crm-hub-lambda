@@ -116,14 +116,15 @@ function EndpointsTable({ title, data, baseUrl }: { title: string, data: { metho
 }
 
 export default function DomusEndpointsPage() {
-  const baseUrl = "https://integrations.lambdaanalytics.co/{slug}/api/domus";
+  const slug = "pailaquinta";
+  const baseUrl = `https://integrations.lambdaanalytics.co/${slug}/api/domus`;
 
   return (
     <div className="space-y-6">
        <div>
         <h1 className="text-2xl font-bold">Endpoints de la API de Domus</h1>
         <p className="text-muted-foreground">
-          Referencia rápida de las rutas disponibles para la integración con Domus. Reemplace `{slug}` por el de su organización.
+          Referencia rápida de las rutas disponibles para la integración con Domus.
         </p>
       </div>
 
