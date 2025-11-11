@@ -1,45 +1,30 @@
 import * as React from 'react';
-import Link from 'next/link';
-import {
-  Cuboid,
-  LayoutDashboard,
-  Settings,
-  Users,
-  Building,
-  ChevronRight,
-  Route,
-  ClipboardList,
-} from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarProvider,
   SidebarInset,
-  SidebarFooter,
+  SidebarProvider,
   SidebarTrigger,
+  SidebarFooter
 } from '@/components/ui/sidebar';
 import { UserNav } from '@/components/user-nav';
-import { getSession } from '@/lib/session';
 import Image from 'next/image';
 import NavLinks from './components/nav-links';
+import Link from 'next/link';
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
   
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-2 border-b border-sidebar-border">
           <Link href="/dashboard" className='flex items-center gap-2'>
-            <Image src="https://picsum.photos/seed/lambda/28/28" width={28} height={28} alt="Lambda Analytics Logo" className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={28} height={28} alt="Lambda Analytics Logo" className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
             <span className="font-semibold text-lg text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Logos Gateway
             </span>
