@@ -36,11 +36,18 @@ function parseCookie(name: string): SessionPayload | null {
   const value = cookie.split('=')[1];
   try {
     const decodedValue = decodeURIComponent(value);
-    const sessionData = JSON.parse(Buffer.from(decodedValue, 'base64').toString('utf-8'));
+    const sessionData = JSON.parse(decodedValue);
     return sessionData;
   } catch (e) {
-    console.error("Failed to parse user data from cookie", e);
-    return null;
+    // If direct parsing fails, try base64 decoding for compatibility
+    try {
+        const base64Decoded = Buffer.from(decodeURIComponent(value), 'base64').toString('utf-8');
+        const sessionData = JSON.parse(base64Decoded);
+        return sessionData;
+    } catch (e2) {
+        console.error("Failed to parse user data from cookie", e2);
+        return null;
+    }
   }
 }
 
@@ -65,7 +72,8 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            {/* You can add a user avatar image URL here if available */}
+            {/* The user object from the API doesn't include an avatar URL. */}
+            {/* So we will always show the initials as a fallback. */}
             <AvatarImage src="" alt={`@${user.full_name}`} />
             <AvatarFallback>{getInitials(user.full_name)}</AvatarFallback>
           </Avatar>

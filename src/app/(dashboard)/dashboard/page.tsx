@@ -36,7 +36,7 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl">
         <Image 
-          src="https://plusai.com/62375700635d76646ef2457f/63bf5ad23c28a62c5edf121e_ANiBCJnjgvqaIrA4G48C-gU3kA3EpJ5N14tass_P2n6PRZMQbBmlF3EnBeUxlMpiyrZqsTgbdhSv-lQc__lPHUY7OwhWdIPIXEaYKnrlGXBSuK8cUfYpg0Lh0jwWVaiERdtIFjhB5-U26DHcBXUqYxcBAjt4YrN5PFzOAGmzixJuL-w6GuPV0Sd291cS5w.png"
+          src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*AU3rmB08Vntf33Is"
           alt="Bienvenido al panel"
           fill
           className="object-cover"
