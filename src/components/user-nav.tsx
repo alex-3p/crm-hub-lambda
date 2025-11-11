@@ -35,19 +35,12 @@ function parseCookie(name: string): SessionPayload | null {
   
   const value = cookie.split('=')[1];
   try {
-    const decodedValue = decodeURIComponent(value);
-    const sessionData = JSON.parse(decodedValue);
-    return sessionData;
+      const base64Decoded = Buffer.from(decodeURIComponent(value), 'base64').toString('utf-8');
+      const sessionData = JSON.parse(base64Decoded);
+      return sessionData;
   } catch (e) {
-    // If direct parsing fails, try base64 decoding for compatibility
-    try {
-        const base64Decoded = Buffer.from(decodeURIComponent(value), 'base64').toString('utf-8');
-        const sessionData = JSON.parse(base64Decoded);
-        return sessionData;
-    } catch (e2) {
-        console.error("Failed to parse user data from cookie", e2);
-        return null;
-    }
+      console.error("Failed to parse user data from cookie", e);
+      return null;
   }
 }
 
@@ -55,6 +48,7 @@ export function UserNav() {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
+    // This code runs on the client side after the component mounts
     const sessionData = parseCookie('session')
     if (sessionData && sessionData.user) {
       setUser(sessionData.user)
