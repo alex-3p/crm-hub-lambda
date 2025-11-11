@@ -24,7 +24,7 @@ export default async function DashboardLayout({
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-2 border-b border-sidebar-border">
           <Link href="/dashboard" className='flex items-center gap-2'>
-            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={28} height={28} alt="Lambda Analytics Logo" className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={28} height={28} alt="Lambda Analytics Logo" className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200 grayscale" />
             <span className="font-semibold text-lg text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Logos Gateway
             </span>
