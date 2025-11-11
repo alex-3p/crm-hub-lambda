@@ -12,6 +12,7 @@ import { UserNav } from '@/components/user-nav';
 import Image from 'next/image';
 import NavLinks from './components/nav-links';
 import Link from 'next/link';
+import { Clock } from '@/components/clock';
 
 export default async function DashboardLayout({
   children,
@@ -24,7 +25,7 @@ export default async function DashboardLayout({
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-4">
           <div className='flex flex-col items-center gap-2 text-center'>
-            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={40} height={40} alt="Lambda Analytics Logo" className="grayscale group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={40} height={40} alt="Lambda Analytics Logo" className="grayscale-0 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
             <span className="font-semibold text-lg text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Logos Gateway
             </span>
@@ -38,13 +39,14 @@ export default async function DashboardLayout({
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
+        <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-card px-4">
           <SidebarTrigger className="md:hidden" />
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-4">
+            <Clock />
             <UserNav />
           </div>
         </header>
-        <main className="flex-1 p-4 sm:p-6 overflow-auto">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 overflow-auto bg-background/95">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
