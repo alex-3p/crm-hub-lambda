@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { login, type FormState } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -13,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 
 export function LoginForm() {
   const initialState: FormState = { message: '', errors: {} };
-  const [state, dispatch] = useFormState(login, initialState);
+  const [state, dispatch] = useActionState(login, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
