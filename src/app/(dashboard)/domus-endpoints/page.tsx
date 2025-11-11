@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { SessionPayload } from "@/lib/definitions";
 
 const endpoints = {
   inventario: [
@@ -70,15 +71,18 @@ async: [
   ],
 };
 
+
 function getSlugFromCookie(): string | null {
   if (typeof window === "undefined") return null;
   const cookie = document.cookie.split('; ').find(row => row.startsWith('session='));
   if (!cookie) return null;
   const value = cookie.split('=')[1];
   try {
-    const sessionData = JSON.parse(decodeURIComponent(value));
+    const base64Decoded = Buffer.from(decodeURIComponent(value), 'base64').toString('utf-8');
+    const sessionData: SessionPayload = JSON.parse(base64Decoded);
     return sessionData.slug || null;
   } catch (error) {
+    console.error("Failed to parse session cookie", error);
     return null;
   }
 }
