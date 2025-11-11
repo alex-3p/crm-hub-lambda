@@ -12,9 +12,10 @@ export async function createSession(payload: { user: User, access: string, refre
     expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
   };
 
-  const encryptedSessionData = JSON.stringify(sessionData); // In a real app, you'd encrypt this.
+  // In a real app, you'd encrypt this. For now, just stringify.
+  const sessionValue = JSON.stringify(sessionData);
 
-  cookies().set(sessionCookieName, encryptedSessionData, {
+  cookies().set(sessionCookieName, sessionValue, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     expires: new Date(sessionData.expiresAt),
