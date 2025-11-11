@@ -16,8 +16,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import type { SessionPayload } from "@/lib/definitions";
 
 const endpoints = {
   inventario: [
@@ -71,22 +69,6 @@ async: [
   ],
 };
 
-
-function getSlugFromCookie(): string | null {
-  if (typeof window === "undefined") return null;
-  const cookie = document.cookie.split('; ').find(row => row.startsWith('session='));
-  if (!cookie) return null;
-  const value = cookie.split('=')[1];
-  try {
-    const base64Decoded = Buffer.from(decodeURIComponent(value), 'base64').toString('utf-8');
-    const sessionData: SessionPayload = JSON.parse(base64Decoded);
-    return sessionData.slug || null;
-  } catch (error) {
-    console.error("Failed to parse session cookie", error);
-    return null;
-  }
-}
-
 function MethodBadge({ method }: { method: string }) {
     const lowerMethod = method.toLowerCase();
     let colorClass = "bg-gray-500/20 text-gray-400 border-gray-500/30";
@@ -101,7 +83,7 @@ function MethodBadge({ method }: { method: string }) {
 }
 
 
-function EndpointsTable({ title, data, baseUrl }: { title: string, data: { method: string, path: string, description: string }[], baseUrl: string | null }) {
+function EndpointsTable({ title, data, baseUrl }: { title: string, data: { method: string, path: string, description: string }[], baseUrl: string }) {
     return (
         <Card>
             <CardHeader>
@@ -121,10 +103,7 @@ function EndpointsTable({ title, data, baseUrl }: { title: string, data: { metho
                             <TableRow key={ep.path}>
                                 <TableCell><MethodBadge method={ep.method} /></TableCell>
                                 <TableCell>
-                                    {baseUrl ? 
-                                        <code className="font-mono text-sm bg-muted p-1 rounded-sm">{baseUrl}{ep.path}</code> 
-                                        : <Skeleton className="h-5 w-full" />
-                                    }
+                                    <code className="font-mono text-sm bg-muted p-1 rounded-sm">{baseUrl}{ep.path}</code> 
                                 </TableCell>
                                 <TableCell>{ep.description}</TableCell>
                             </TableRow>
@@ -137,21 +116,14 @@ function EndpointsTable({ title, data, baseUrl }: { title: string, data: { metho
 }
 
 export default function DomusEndpointsPage() {
-  const [baseUrl, setBaseUrl] = React.useState<string | null>(null);
-
-  React.useEffect(() => {
-      const slug = getSlugFromCookie();
-      if(slug) {
-          setBaseUrl(`https://integrations.lambdaanalytics.co/${slug}/api/domus`);
-      }
-  }, []);
+  const baseUrl = "https://integrations.lambdaanalytics.co/{slug}/api/domus";
 
   return (
     <div className="space-y-6">
        <div>
         <h1 className="text-2xl font-bold">Endpoints de la API de Domus</h1>
         <p className="text-muted-foreground">
-          Referencia rápida de las rutas disponibles para la integración con Domus.
+          Referencia rápida de las rutas disponibles para la integración con Domus. Reemplace `{slug}` por el de su organización.
         </p>
       </div>
 
