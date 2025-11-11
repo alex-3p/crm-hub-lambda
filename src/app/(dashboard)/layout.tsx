@@ -22,10 +22,10 @@ export default async function DashboardLayout({
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
-        <SidebarHeader className="p-2">
-          <div className='flex flex-col items-center gap-2'>
+        <SidebarHeader className="p-4">
+          <div className='flex flex-col items-center gap-2 text-center'>
             <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={40} height={40} alt="Lambda Analytics Logo" className="grayscale group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
-            <span className="font-semibold text-sm text-sidebar-foreground group-data-[collapsible=icon]:hidden">
+            <span className="font-semibold text-lg text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Logos Gateway
             </span>
           </div>

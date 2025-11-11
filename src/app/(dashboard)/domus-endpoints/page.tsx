@@ -1,3 +1,6 @@
+"use client"
+
+import * as React from "react"
 import {
   Card,
   CardContent,
@@ -13,6 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const endpoints = {
   inventario: [
@@ -60,11 +64,24 @@ const endpoints = {
   configuracion: [
     { method: "GET/POST", path: "/credentials/", description: "Gestionar credenciales de API de Domus" },
   ],
-  async: [
+async: [
     { method: "POST", path: "/inventario/export/full/", description: "Iniciar exportación asíncrona de todo el inventario" },
     { method: "GET", path: "/inventario/export/status/<task_id>/", description: "Ver estado de la tarea de exportación asíncrona" },
   ],
 };
+
+function getSlugFromCookie(): string | null {
+  if (typeof window === "undefined") return null;
+  const cookie = document.cookie.split('; ').find(row => row.startsWith('session='));
+  if (!cookie) return null;
+  const value = cookie.split('=')[1];
+  try {
+    const sessionData = JSON.parse(decodeURIComponent(value));
+    return sessionData.slug || null;
+  } catch (error) {
+    return null;
+  }
+}
 
 function MethodBadge({ method }: { method: string }) {
     const lowerMethod = method.toLowerCase();
@@ -80,7 +97,7 @@ function MethodBadge({ method }: { method: string }) {
 }
 
 
-function EndpointsTable({ title, data }: { title: string, data: { method: string, path: string, description: string }[]}) {
+function EndpointsTable({ title, data, baseUrl }: { title: string, data: { method: string, path: string, description: string }[], baseUrl: string | null }) {
     return (
         <Card>
             <CardHeader>
@@ -91,7 +108,7 @@ function EndpointsTable({ title, data }: { title: string, data: { method: string
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[120px]">Método</TableHead>
-                            <TableHead className="w-[450px]">Ruta del Endpoint (/api/domus...)</TableHead>
+                            <TableHead className="w-[450px]">Ruta del Endpoint</TableHead>
                             <TableHead>Descripción</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -99,7 +116,12 @@ function EndpointsTable({ title, data }: { title: string, data: { method: string
                         {data.map((ep) => (
                             <TableRow key={ep.path}>
                                 <TableCell><MethodBadge method={ep.method} /></TableCell>
-                                <TableCell><code className="font-mono text-sm bg-muted p-1 rounded-sm">{ep.path}</code></TableCell>
+                                <TableCell>
+                                    {baseUrl ? 
+                                        <code className="font-mono text-sm bg-muted p-1 rounded-sm">{baseUrl}{ep.path}</code> 
+                                        : <Skeleton className="h-5 w-full" />
+                                    }
+                                </TableCell>
                                 <TableCell>{ep.description}</TableCell>
                             </TableRow>
                         ))}
@@ -111,6 +133,15 @@ function EndpointsTable({ title, data }: { title: string, data: { method: string
 }
 
 export default function DomusEndpointsPage() {
+  const [baseUrl, setBaseUrl] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+      const slug = getSlugFromCookie();
+      if(slug) {
+          setBaseUrl(`https://integrations.lambdaanalytics.co/${slug}/api/domus`);
+      }
+  }, []);
+
   return (
     <div className="space-y-6">
        <div>
@@ -120,13 +151,13 @@ export default function DomusEndpointsPage() {
         </p>
       </div>
 
-      <EndpointsTable title="Inventario y Propiedades" data={endpoints.inventario} />
-      <EndpointsTable title="CRM - Contactos y Perfiles" data={endpoints.crmContactos} />
-      <EndpointsTable title="CRM - Relaciones y Tags" data={endpoints.crmRelaciones} />
-      <EndpointsTable title="CRM - Citas y Disponibilidad" data={endpoints.crmCitas} />
-      <EndpointsTable title="Flujo Unificado" data={endpoints.unifiedFlow} />
-      <EndpointsTable title="Configuración" data={endpoints.configuracion} />
-      <EndpointsTable title="Tareas Asíncronas" data={endpoints.async} />
+      <EndpointsTable title="Inventario y Propiedades" data={endpoints.inventario} baseUrl={baseUrl} />
+      <EndpointsTable title="CRM - Contactos y Perfiles" data={endpoints.crmContactos} baseUrl={baseUrl} />
+      <EndpointsTable title="CRM - Relaciones y Tags" data={endpoints.crmRelaciones} baseUrl={baseUrl} />
+      <EndpointsTable title="CRM - Citas y Disponibilidad" data={endpoints.crmCitas} baseUrl={baseUrl} />
+      <EndpointsTable title="Flujo Unificado" data={endpoints.unifiedFlow} baseUrl={baseUrl} />
+      <EndpointsTable title="Configuración" data={endpoints.configuracion} baseUrl={baseUrl} />
+      <EndpointsTable title="Tareas Asíncronas" data={endpoints.async} baseUrl={baseUrl} />
     </div>
   );
 }
