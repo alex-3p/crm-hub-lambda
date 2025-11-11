@@ -8,7 +8,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 space-y-8">
         <div className="flex flex-col items-center">
           <Link className="flex items-center justify-center mb-6" href="/">
-            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco.png" width={28} height={28} alt="Lambda Analytics Logo" />
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={28} height={28} alt="Lambda Analytics Logo" />
             <span className="ml-4 font-semibold text-2xl">Logos Gateway</span>
           </Link>
           <h1 className="text-2xl font-bold text-center">Bienvenido de Nuevo</h1>
