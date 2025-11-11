@@ -9,7 +9,6 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Users, Building, Settings, CheckCircle, BarChart3, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
 
 // Mock data based on your backend API responses
@@ -37,7 +36,7 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl">
         <Image 
-          src={PlaceHolderImages.find(p => p.id === 'dashboard-welcome')?.imageUrl || ''}
+          src="https://plusai.com/62375700635d76646ef2457f/63bf5ad23c28a62c5edf121e_ANiBCJnjgvqaIrA4G48C-gU3kA3EpJ5N14tass_P2n6PRZMQbBmlF3EnBeUxlMpiyrZqsTgbdhSv-lQc__lPHUY7OwhWdIPIXEaYKnrlGXBSuK8cUfYpg0Lh0jwWVaiERdtIFjhB5-U26DHcBXUqYxcBAjt4YrN5PFzOAGmzixJuL-w6GuPV0Sd291cS5w.png"
           alt="Bienvenido al panel"
           fill
           className="object-cover"

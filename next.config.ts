@@ -51,6 +51,12 @@ const nextConfig: NextConfig = {
         hostname: 'lambdaanalytics.co',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'plusai.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

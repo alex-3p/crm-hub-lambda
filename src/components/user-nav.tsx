@@ -15,7 +15,7 @@ import {
 import { logout } from '@/lib/actions'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import type { User } from '@/lib/definitions'
+import type { User, SessionPayload } from '@/lib/definitions'
 import { Skeleton } from './ui/skeleton'
 
 
@@ -28,15 +28,16 @@ function getInitials(name: string) {
   return name.substring(0, 2).toUpperCase();
 }
 
-
-function parseCookie(name: string) {
+function parseCookie(name: string): SessionPayload | null {
   if (typeof window === 'undefined') return null;
   const cookie = document.cookie.split('; ').find(row => row.startsWith(`${name}=`));
   if (!cookie) return null;
+  
   const value = cookie.split('=')[1];
   try {
-    const sessionData = JSON.parse(decodeURIComponent(value));
-    return sessionData.user;
+    const decodedValue = decodeURIComponent(value);
+    const sessionData = JSON.parse(Buffer.from(decodedValue, 'base64').toString('utf-8'));
+    return sessionData;
   } catch (e) {
     console.error("Failed to parse user data from cookie", e);
     return null;
@@ -47,9 +48,9 @@ export function UserNav() {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    const userData = parseCookie('session')
-    if (userData) {
-      setUser(userData)
+    const sessionData = parseCookie('session')
+    if (sessionData && sessionData.user) {
+      setUser(sessionData.user)
     }
   }, [])
 
@@ -64,7 +65,8 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage src="/avatars/03.png" alt={`@${user.full_name}`} />
+            {/* You can add a user avatar image URL here if available */}
+            <AvatarImage src="" alt={`@${user.full_name}`} />
             <AvatarFallback>{getInitials(user.full_name)}</AvatarFallback>
           </Avatar>
         </Button>

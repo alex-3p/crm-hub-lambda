@@ -4,46 +4,61 @@ import type { SessionPayload, User } from './definitions';
 
 const sessionCookieName = 'session';
 
+// In a real app, you'd use a library like 'iron-session' to encrypt the cookie.
+// For this example, we'll just use base64 encoding for simplicity.
+async function encrypt(payload: SessionPayload) {
+  return Buffer.from(JSON.stringify(payload)).toString('base64');
+}
+
+async function decrypt(input: string): Promise<SessionPayload | null> {
+  try {
+    const sessionData = JSON.parse(Buffer.from(input, 'base64').toString('utf-8'));
+     // Basic validation
+    if (sessionData && sessionData.expiresAt && sessionData.user) {
+        return sessionData;
+    }
+    return null;
+  } catch (error) {
+    console.error('Failed to decrypt session cookie:', error);
+    return null;
+  }
+}
+
 export async function createSession(payload: { user: User, access: string, refresh: string }) {
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
   const sessionData: SessionPayload = {
     user: payload.user,
     accessToken: payload.access,
     refreshToken: payload.refresh,
-    expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
+    expiresAt: expiresAt.getTime(),
   };
 
-  // In a real app, you'd encrypt this. For now, just stringify.
-  const sessionValue = JSON.stringify(sessionData);
+  const encryptedSession = await encrypt(sessionData);
 
-  cookies().set(sessionCookieName, sessionValue, {
+  cookies().set(sessionCookieName, encryptedSession, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    expires: new Date(sessionData.expiresAt),
+    expires: expiresAt,
     path: '/',
     sameSite: 'lax',
   });
 }
 
 export async function getSession(): Promise<SessionPayload | null> {
-  const cookie = cookies().get(sessionCookieName);
-  if (!cookie?.value) {
+  const cookie = cookies().get(sessionCookieName)?.value;
+  if (!cookie) {
     return null;
   }
   
-  try {
-    // In a real app, you'd decrypt this.
-    const sessionData = JSON.parse(cookie.value) as SessionPayload;
+  const sessionData = await decrypt(cookie);
 
-    if (Date.now() > sessionData.expiresAt) {
-      await deleteSession();
-      return null;
-    }
-
-    return sessionData;
-  } catch (error) {
-    console.error("Failed to parse session cookie:", error);
+  if (!sessionData || Date.now() > sessionData.expiresAt) {
+    // Session is expired or invalid, delete cookie
+    if (sessionData) await deleteSession(); 
     return null;
   }
+
+  return sessionData;
 }
 
 export async function deleteSession() {

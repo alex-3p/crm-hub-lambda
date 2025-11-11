@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function LoginPage() {
   return (
-    <main className="flex items-center justify-center min-h-screen bg-secondary/50">
+    <main className="flex items-center justify-center min-h-screen bg-background">
       <div className="w-full max-w-md p-8 space-y-8">
         <div className="flex flex-col items-center">
           <Link className="flex items-center justify-center mb-6" href="/">
