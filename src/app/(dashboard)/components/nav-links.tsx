@@ -11,7 +11,8 @@ import {
   Building,
   Settings,
   Route,
-  ClipboardList
+  ClipboardList,
+  Code2,
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -22,6 +23,7 @@ const links = [
     { href: '/perfil', label: 'Mi Perfil', icon: ClipboardList },
     { href: '/organizations', label: 'Organizaciones', icon: Building },
     { href: '/domus-endpoints', label: 'Endpoints Domus', icon: Route },
+    { href: '/api-examples', label: 'Ejemplos de API', icon: Code2 },
     { href: '/settings', label: 'Ajustes de CRM', icon: Settings },
 ]
 
