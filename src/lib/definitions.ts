@@ -5,8 +5,17 @@ export type User = {
   role: string;
 };
 
+export type Organization = {
+  id: number;
+  name: string;
+  slug: string;
+  is_active: boolean;
+};
+
+
 export type SessionPayload = {
   user: User;
+  slug: string;
   accessToken: string;
   refreshToken: string;
   expiresAt: number;

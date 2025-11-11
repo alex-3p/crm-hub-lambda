@@ -12,24 +12,32 @@ async function getApiHeaders() {
     };
 }
 
-async function getSlug() {
-    // In a real app, the slug might be part of the session or a global context
-    // For now, we hardcode it based on the login form's default
+async function getApiUrl(path: string): Promise<string> {
     const session = await getSession();
-    // This is a placeholder. You should get the slug from the session or another source.
-    // Let's try to get it from the cookie if it exists.
-    // This is a bit of a hack, we should store slug in the session.
-    return 'pailaquinta';
+    const slug = session?.slug;
+    if (!slug) {
+        throw new Error("No se pudo encontrar el slug de la organización en la sesión.");
+    }
+    const baseUrl = "https://integrations.lambdaanalytics.co";
+    return `${baseUrl}/${slug}/api/accounts/${path}`;
 }
 
+export async function getUsers(): Promise<User[]> {
+    const headers = await getApiHeaders();
+    const url = await getApiUrl('users/');
+    const response = await fetch(url, { headers });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to fetch users');
+    }
+    return response.json();
+}
 
 export async function getUserDetails(userId: number): Promise<User> {
     const headers = await getApiHeaders();
-    const slug = await getSlug();
-    const response = await fetch(`https://crm-gateway.lambdaanalytics.co/${slug}/api/accounts/users/${userId}/`, {
-        method: 'GET',
-        headers,
-    });
+    const url = await getApiUrl(`users/${userId}/`);
+    const response = await fetch(url, { headers });
 
     if (!response.ok) {
         const errorData = await response.json();
@@ -39,19 +47,52 @@ export async function getUserDetails(userId: number): Promise<User> {
     return response.json();
 }
 
-export async function updateUser(userId: number, data: Partial<User>): Promise<User> {
+export async function createUser(data: Partial<User>): Promise<User> {
     const headers = await getApiHeaders();
-    const slug = await getSlug();
-    const response = await fetch(`https://crm-gateway.lambdaanalytics.co/${slug}/api/accounts/users/${userId}/`, {
-        method: 'PATCH', // or PUT if your API uses it for updates
+    const url = await getApiUrl('users/');
+    const response = await fetch(url, {
+        method: 'POST',
         headers,
         body: JSON.stringify(data),
     });
 
     if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.detail || 'Failed to update user');
+        const errorMessage = Object.values(errorData).join(', ');
+        throw new Error(errorMessage || 'Failed to create user');
     }
 
     return response.json();
+}
+
+export async function updateUser(userId: number, data: Partial<User>): Promise<User> {
+    const headers = await getApiHeaders();
+    const url = await getApiUrl(`users/${userId}/`);
+    const response = await fetch(url, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        const errorMessage = Object.values(errorData).join(', ');
+        throw new Error(errorMessage || 'Failed to update user');
+    }
+
+    return response.json();
+}
+
+export async function deleteUser(userId: number): Promise<void> {
+    const headers = await getApiHeaders();
+    const url = await getApiUrl(`users/${userId}/`);
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers,
+    });
+
+    if (!response.ok && response.status !== 204) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to delete user');
+    }
 }

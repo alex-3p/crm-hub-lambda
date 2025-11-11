@@ -35,7 +35,7 @@ export async function login(prevState: FormState, formData: FormData): Promise<F
   const { slug, email, password } = validatedFields.data;
 
   try {
-    const response = await fetch(`https://crm-gateway.lambdaanalytics.co/${slug}/api/accounts/login/`, {
+    const response = await fetch(`https://integrations.lambdaanalytics.co/${slug}/api/accounts/login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export async function login(prevState: FormState, formData: FormData): Promise<F
     const data = await response.json();
 
     if (data.access && data.refresh && data.user) {
-      await createSession(data);
+      await createSession({...data, slug });
     } else {
        return { message: 'Login failed', errors: { _form: ['Invalid response from server.'] } };
     }

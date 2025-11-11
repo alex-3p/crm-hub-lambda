@@ -12,7 +12,6 @@ import { UserNav } from '@/components/user-nav';
 import Image from 'next/image';
 import NavLinks from './components/nav-links';
 import Link from 'next/link';
-import { ThemeToggle } from '@/components/theme-toggle';
 
 export default async function DashboardLayout({
   children,
@@ -24,12 +23,12 @@ export default async function DashboardLayout({
     <SidebarProvider>
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-2">
-          <Link href="/dashboard" className='flex flex-col items-center gap-2'>
-            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={40} height={40} alt="Lambda Analytics Logo" className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
+          <div className='flex flex-col items-center gap-2'>
+            <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={40} height={40} alt="Lambda Analytics Logo" className="grayscale group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-200" />
             <span className="font-semibold text-sm text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Logos Gateway
             </span>
-          </Link>
+          </div>
         </SidebarHeader>
         <SidebarContent>
           <NavLinks />
@@ -42,7 +41,6 @@ export default async function DashboardLayout({
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <SidebarTrigger className="md:hidden" />
           <div className="ml-auto flex items-center gap-2">
-            <ThemeToggle />
             <UserNav />
           </div>
         </header>
