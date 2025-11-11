@@ -1,3 +1,13 @@
+"use client";
+
+import * as React from "react";
+import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { getDomusCredentials, updateDomusCredentials } from "@/lib/services/domus-credentials-service";
+import { useToast } from "@/hooks/use-toast";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,6 +17,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -16,50 +34,160 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const domusFormSchema = z.object({
+  crm_token: z.string().min(1, "Token de CRM es requerido."),
+  inventory_token: z.string().min(1, "Token de Inventario es requerido."),
+  api_base: z.string().url("Debe ser una URL válida."),
+  crm_base: z.string().url("Debe ser una URL válida."),
+  inmobiliaria: z.coerce.number().int(),
+  grupo: z.string(),
+  requiere_grupo: z.boolean(),
+});
 
 function DomusCredentialsForm() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const { data: credentials, isLoading: isLoadingCredentials } = useQuery({
+    queryKey: ["domusCredentials"],
+    queryFn: getDomusCredentials,
+    retry: false, // Don't retry if it fails (e.g. 404)
+  });
+
+  const mutation = useMutation({
+    mutationFn: updateDomusCredentials,
+    onSuccess: () => {
+      toast({
+        title: "Credenciales Guardadas",
+        description: "Las credenciales de Domus se han actualizado correctamente.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["domusCredentials"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error al Guardar",
+        description: `Ocurrió un error: ${error.message}`,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const form = useForm<z.infer<typeof domusFormSchema>>({
+    resolver: zodResolver(domusFormSchema),
+    values: {
+      crm_token: credentials?.crm_token || "",
+      inventory_token: credentials?.inventory_token || "",
+      api_base: credentials?.api_base || "https://apiv3get.domus.la",
+      crm_base: credentials?.crm_base || "https://crm_api.domus.la",
+      inmobiliaria: credentials?.inmobiliaria || 1,
+      grupo: credentials?.grupo || "26007",
+      requiere_grupo: credentials?.requiere_grupo ?? true,
+    },
+    disabled: isLoadingCredentials,
+  });
+  
+  const onSubmit = (values: z.infer<typeof domusFormSchema>) => {
+    mutation.mutate(values);
+  };
+  
+  if (isLoadingCredentials) {
+      return (
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-7 w-48" />
+              <Skeleton className="h-4 w-full" />
+            </CardHeader>
+            <CardContent className="grid gap-6 sm:grid-cols-2">
+                {Array.from({ length: 7 }).map((_, i) => (
+                    <div className="space-y-2" key={i}>
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-10 w-full" />
+                    </div>
+                ))}
+            </CardContent>
+            <CardFooter>
+              <Skeleton className="h-10 w-40" />
+            </CardFooter>
+          </Card>
+      );
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Credenciales de Domus</CardTitle>
-        <CardDescription>
-          Configure los tokens de API y los parámetros operativos para la integración con Domus.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="domus-crm-token">Token de CRM</Label>
-          <Input id="domus-crm-token" placeholder="Introduzca su Token de CRM" type="password" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="domus-inventory-token">Token de Inventario</Label>
-          <Input id="domus-inventory-token" placeholder="Introduzca su Token de Inventario" type="password" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="domus-api-base">URL Base de API (Inmuebles)</Label>
-          <Input id="domus-api-base" defaultValue="https://apiv3get.domus.la" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="domus-crm-base">URL Base de CRM</Label>
-          <Input id="domus-crm-base" defaultValue="https://crm_api.domus.la" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="domus-inmobiliaria">ID Inmobiliaria</Label>
-          <Input id="domus-inmobiliaria" type="number" defaultValue="1" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="domus-grupo">Grupo</Label>
-          <Input id="domus-grupo" defaultValue="26007" />
-        </div>
-        <div className="flex items-center space-x-2 mt-4">
-          <Checkbox id="domus-requiere-grupo" defaultChecked />
-          <Label htmlFor="domus-requiere-grupo">Requiere Grupo</Label>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button>Guardar Credenciales de Domus</Button>
-      </CardFooter>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Card>
+          <CardHeader>
+            <CardTitle>Credenciales de Domus</CardTitle>
+            <CardDescription>
+              Configure los tokens de API y los parámetros operativos para la integración con Domus.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-6 sm:grid-cols-2">
+            <FormField control={form.control} name="crm_token" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Token de CRM</FormLabel>
+                  <FormControl><Input type="password" placeholder="Introduzca su Token de CRM" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="inventory_token" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Token de Inventario</FormLabel>
+                  <FormControl><Input type="password" placeholder="Introduzca su Token de Inventario" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="api_base" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>URL Base de API (Inmuebles)</FormLabel>
+                  <FormControl><Input {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="crm_base" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>URL Base de CRM</FormLabel>
+                  <FormControl><Input {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="inmobiliaria" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ID Inmobiliaria</FormLabel>
+                  <FormControl><Input type="number" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="grupo" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Grupo</FormLabel>
+                  <FormControl><Input {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField control={form.control} name="requiere_grupo" render={({ field }) => (
+              <FormItem className="flex items-center space-x-2 mt-4">
+                <FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} id="requiere_grupo" /></FormControl>
+                <Label htmlFor="requiere_grupo">Requiere Grupo</Label>
+              </FormItem>
+            )}/>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit" disabled={mutation.isPending}>
+              {mutation.isPending ? "Guardando..." : "Guardar Credenciales de Domus"}
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
+    </Form>
   );
 }
 
@@ -166,8 +294,9 @@ function CalendarCredentialsForm() {
     )
 }
 
+const queryClient = new QueryClient();
 
-export default function SettingsPage() {
+function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
@@ -194,4 +323,12 @@ export default function SettingsPage() {
       </Tabs>
     </div>
   );
+}
+
+export default function SettingsPageWrapper() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SettingsPage />
+    </QueryClientProvider>
+  )
 }

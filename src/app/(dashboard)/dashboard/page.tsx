@@ -49,7 +49,7 @@ export default async function DashboardPage() {
               ¡Bienvenido, {session?.user?.full_name.split(' ')[0] || 'Admin'}!
             </h1>
             <p className="text-lg text-white/90">
-                Aquí tienes un resumen rápido de tus integraciones de CRM.
+                Aquí tienes un resumen rápido de tus integraciones de CRM y otros servicios.
             </p>
         </div>
       </div>
