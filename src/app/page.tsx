@@ -63,7 +63,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <header className="px-4 lg:px-6 h-16 flex items-center shadow-sm bg-card z-10">
         <Link className="flex items-center justify-center" href="#">
-          <Image src="https://lambdaanalytics.co/wp-content/uploads/2024/10/Iso-LAMBDA-Blanco-Lima-Neon.png" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
+          <Image src="https://picsum.photos/seed/lambda/20/20" width={20} height={20} alt="Lambda Analytics Logo" className="grayscale" />
           <span className="ml-4 font-semibold text-lg">Logos Gateway</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
@@ -111,9 +111,9 @@ export default function Home() {
 
         <section
           id="integrations"
-          className="w-full py-12 md:py-20 lg:py-24 bg-secondary flex justify-center"
+          className="w-full py-12 md:py-20 lg:py-24 bg-secondary"
         >
-          <div className="w-full max-w-7xl px-4 md:px-6 text-center">
+          <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-3">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Integraciones</div>
