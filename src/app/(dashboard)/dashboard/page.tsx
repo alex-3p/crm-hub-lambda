@@ -6,12 +6,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Users, Building, Settings, CheckCircle } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Users, Building, Settings, CheckCircle, BarChart3, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Badge } from "@/components/ui/badge";
+
+// Mock data based on your backend API responses
+const integrationStats = [
+    { org__name: 'Pailaquinta', provider: 'domus', total: 1520 },
+    { org__name: 'Pailaquinta', provider: 'epm', total: 340 },
+    { org__name: 'Lambda Analytics', provider: 'google-calendar', total: 890 },
+];
+
+const userSummary = [
+    { email: 'usuario@empresa.com', total_integraciones: 3, total_usos: 1860 },
+    { email: 'ana.garcia@empresa.com', total_integraciones: 2, total_usos: 890 },
+    { email: 'luis.t@empresa.com', total_integraciones: 1, total_usos: 50 },
+];
+
 
 export default async function DashboardPage() {
   const session = await getSession();
+
+  const totalUsers = userSummary.length;
+  const totalIntegrations = [...new Set(integrationStats.map(s => s.provider))].length;
+  const totalApiUsage = integrationStats.reduce((acc, curr) => acc + curr.total, 0);
 
   return (
     <div className="space-y-6">
@@ -27,7 +47,7 @@ export default async function DashboardPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 p-6 md:p-8">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-headline">
-              ¡Bienvenido de nuevo, {session?.user?.full_name.split(' ')[0] || 'Admin'}!
+              ¡Bienvenido, {session?.user?.full_name.split(' ')[0] || 'Admin'}!
             </h1>
             <p className="text-lg text-white/90">
                 Aquí tienes un resumen rápido de tus integraciones de CRM.
@@ -39,42 +59,42 @@ export default async function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Usuarios Gestionados
+              Usuarios Activos
             </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
+            <div className="text-2xl font-bold">{totalUsers}</div>
             <p className="text-xs text-muted-foreground">
-              +2 desde el último mes
+              Total de usuarios en la plataforma
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Organizaciones
-            </CardTitle>
-            <Building className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">
-              +1 desde el último trimestre
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-                Integraciones Activas
+              Integraciones Totales
             </CardTitle>
             <Settings className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">4</div>
+            <div className="text-2xl font-bold">{totalIntegrations}</div>
             <p className="text-xs text-muted-foreground">
-              Todos los sistemas operativos
+              Proveedores de servicios conectados
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+                Uso Total de API
+            </CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalApiUsage.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground">
+              Llamadas totales este mes
             </p>
           </CardContent>
         </Card>
@@ -91,6 +111,61 @@ export default async function DashboardPage() {
               Monitoreo 24/7
             </p>
           </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+            <CardHeader>
+                <CardTitle>Uso de API por Integración</CardTitle>
+                <CardDescription>Llamadas a la API por organización y proveedor.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Organización</TableHead>
+                            <TableHead>Proveedor</TableHead>
+                            <TableHead className="text-right">Total de Usos</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {integrationStats.map((stat, index) => (
+                            <TableRow key={index}>
+                                <TableCell>{stat.org__name}</TableCell>
+                                <TableCell><Badge variant="secondary">{stat.provider}</Badge></TableCell>
+                                <TableCell className="text-right font-mono">{stat.total.toLocaleString()}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Resumen por Usuario</CardTitle>
+                <CardDescription>Integraciones activas y uso de API por usuario.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                 <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Integraciones</TableHead>
+                            <TableHead className="text-right">Uso de API</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {userSummary.map((user, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="font-medium">{user.email}</TableCell>
+                                <TableCell className="text-center">{user.total_integraciones}</TableCell>
+                                <TableCell className="text-right font-mono">{user.total_usos.toLocaleString()}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
         </Card>
       </div>
     </div>

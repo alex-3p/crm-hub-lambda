@@ -7,6 +7,7 @@ import {
   Users,
   Building,
   ChevronRight,
+  Route,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -71,6 +72,14 @@ export default async function DashboardLayout({
                 <Link href="/organizations">
                   <Building />
                   Organizaciones
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/domus-endpoints">
+                  <Route />
+                  Endpoints Domus
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
